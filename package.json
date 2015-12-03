@@ -1,0 +1,25 @@
+{
+  "name": "nodejs_chat",
+  "version": "1.0.0",
+  "description": "Simple chat using nodejs, express and websockets",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garcianavalon/nodejs_chat.git"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Enrique Garcia Navalon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garcianavalon/nodejs_chat/issues"
+  },
+  "homepage": "https://github.com/garcianavalon/nodejs_chat#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
