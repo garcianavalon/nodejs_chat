@@ -2,24 +2,50 @@
 
 {% block content %}
   <h1>Chat</h1>
-  <ul id="messages"></ul>
-  <form action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
+  <h2 id='nick_tag'></h2>
+  <form action="" id='login'>
+    <label for='nickname'>Choose a nickname</label>
+    <input id="nickname" autocomplete="off" /><button>Send</button>
   </form>
+  <div id='chat' class='chat'>
+    <h3>Connected users: </h3><ul id='users'></ul>
+    <form action="" id='chat_form'>
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <ul id='messages'></ul>
+  </div>
   <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
   <script>
-    var socket = io();
-    $('form').submit(function(){
-      var msg = $('#m').val();
-      $('#messages').append($('<li>').text(msg));
-      socket.emit('chat message', msg);
-      // clear message field
-      $('#m').val('');
+    $('#login').submit(function(){
+      //init socket with username
+      var nickname = $('#nickname').val();
+      var socket = io('', {query: 'nickname=' + nickname});
+      socket.emit('user connected', nickname);
+      $('#chat_form').submit(function(){
+        var msg = $('#m').val();
+        $('#messages').append($('<li>').text(msg));
+        socket.emit('chat message', msg);
+        // clear message field
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
+      // update connected users
+      socket.on('user connected', function(nickname){
+        $('#users').append($('<li>').text(nickname));
+      });
+
+      // show nickname
+      $('#nick_tag').text('Welcome ' + nickname);
+      $('#login').hide();
+      // show chat
+      $('#chat').show();
+      // prevent form from actually submitting
       return false;
     });
-    socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    });
+
   </script>
 {% endblock %}
