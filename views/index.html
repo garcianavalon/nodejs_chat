@@ -1,5 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <p>This is just an awesome page.</p>
+  <h1>Chat</h1>
+  <ul id="messages"></ul>
+  <form action="">
+    <input id="m" autocomplete="off" /><button>Send</button>
+  </form>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
 {% endblock %}
