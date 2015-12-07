@@ -6,6 +6,10 @@ a {
   color: #444;
 }
 
+ul {
+  list-style: none;
+}
+
 .row-header {
     background-color: #EC6269;
     color: #fff;
@@ -14,7 +18,7 @@ a {
 .row-main-content {
   min-height: 70%;
   height: 1px;
-  padding-left: 3em;
+  padding-left: 0em;
 }
 
 .row-main-content > section {
@@ -48,8 +52,6 @@ a {
 }
 
 .chat-input-avatar > img {
-  width: 5em;
-  padding: 0em;
   display: block;
   border-radius: 15px;
 }
@@ -65,4 +67,9 @@ a {
 
 .chat-input-form .input {
   border: 2px solid #eee;
+}
+
+.row-aside-header {
+  border-bottom: 1px solid #aaa;
+  text-align: center
 }
