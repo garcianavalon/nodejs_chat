@@ -84,3 +84,11 @@ ul {
   border-bottom: 1px solid #aaa;
   text-align: center
 }
+
+.conversation-list {
+  padding-left: 1em;
+}
+
+.chat-conversation-user p {
+  font-size: 13px;
+}
