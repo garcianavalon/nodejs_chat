@@ -16,80 +16,8 @@
         <h1 class="squeeze-top">WOHO-Chat</h1>
       </div>
     </header>
-    <div class="row row-main-content">
-      <section class="column ten reset">
-        <div class="row row-chat">
-          <ul id="messages">
-            <li>
-              <div class="row row-message">
-                <div class="chat-message-avatar column one">
-                  <img src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-                </div>
-                <div class="chat-message-text column eleven last">
-                  <p>Hola</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="row row-message">
-                <div class="chat-message-avatar column one">
-                  <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-                </div>
-                <div class="chat-message-text column eleven last">
-                  <p>Hola, mira mi mensaje de ejemplo</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="row row-message">
-                <div class="chat-message-avatar column one">
-                  <img src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-                </div>
-                <div class="chat-message-text column eleven last">
-                  <p>Bua, es brutal</p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="row row-message">
-                <div class="chat-message-avatar column one">
-                  <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-                </div>
-                <div class="chat-message-text column eleven last">
-                  <p>Lo se nena, lo se ;)</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="chat-input row">
-            <div class="chat-input-avatar column one">
-              <img src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-            </div>
-            <div class="chat-input-form column eleven last">
-              <form action="" class="">
-                <input id="m" autocomplete="off" class="plain input buffer" placeholder="Escribe tu mensaje"/>
-                <button class="plain input button">Enviar</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-      <aside class="column two reset last">
-        <header class="row row-aside-header">
-          <div class="row-content">
-            <h3 class="squeeze-top">Historial de conversaciones</h3>
-          </div>
-        </header>
-        <section class="row">
-          <ul id="conversations">
-            <li>Sample item</li>
-            <li>Sample item</li>
-            <li>Sample item</li>
-            <li>Sample item</li>
-          </ul>
-        </section>
-      </aside>
-    </div>
+    {% block content %}
+    {% endblock %}
     <footer class="row row-footer">
       <div class="row-content buffer">
         <p><a href="#" target="_blank">Footerrr</a></p>
