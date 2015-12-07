@@ -16,7 +16,7 @@ ul {
 }
 
 .row-main-content {
-  min-height: 70%;
+  min-height: 80%;
   height: 1px;
   padding-left: 0em;
 }
@@ -33,12 +33,12 @@ ul {
 }
 
 .row-chat {
-  min-height: 97%;
+  min-height: 105%;
   height: 1px;
 }
 
 .row-chat > ul {
-  min-height: 80%;
+  min-height: 79%;
 }
 
 .row-footer {
@@ -54,11 +54,13 @@ ul {
 .chat-input-avatar > img {
   display: block;
   border-radius: 15px;
+  margin-left: 1em;
+  width: 80%;
 }
 
 .chat-input-avatar {
   display: inline-block;
-  width: 15%;
+  margin-top: 1em;
 }
 
 .chat-input-form {
@@ -67,6 +69,15 @@ ul {
 
 .chat-input-form .input {
   border: 2px solid #eee;
+  margin-top: 1em;
+  margin-left: 1em;
+  width: 70%;
+  padding: 0.5em;
+}
+
+.chat-input-form .button {
+  width: 15%;
+  padding: 0.5em;
 }
 
 .row-aside-header {
