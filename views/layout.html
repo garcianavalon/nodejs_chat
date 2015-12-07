@@ -3,11 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}nodejs_chat{% endblock %}</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/stylesheets/layers.min.css">
     <link rel="stylesheet" href="/static/stylesheets/style.css">
     {% block extra_head %}
     {% endblock %}
   </head>
   <body>
-      {% block content %}{% endblock %}
+    <!-- Header -->
+    <header class="row row-header buffer">
+      <div class="row-content">
+        <h1 class="squeeze-top">WOHO-Chat</h1>
+      </div>
+    </header>
+    <div class="row row-main-content">
+      <section class="column eight reset">
+        <div class="row row-chat">
+          <ul id="messages">
+            <li>Sample message</li>
+            <li>Sample message</li>
+            <li>Sample message</li>
+            <li>Sample message</li>
+          </ul>
+          <form action="">
+            <input id="chatbar" autocomplete="off" /><button>Enviar</button>
+          </form>
+        </div>
+      </section>
+      <aside class="column four reset last">
+        <ul id="conversations">
+          <li>Sample item</li>
+          <li>Sample item</li>
+          <li>Sample item</li>
+          <li>Sample item</li>
+        </ul>
+      </aside>
+    </div>
+    <footer class="row row-footer">
+      <div class="row-content buffer">
+        <p><a href="#" target="_blank">Footerrr</a></p>
+      </div>
+    </footer>
   </body>
 </html>
