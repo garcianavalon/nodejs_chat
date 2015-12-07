@@ -13,7 +13,28 @@ a {
 
 .row-main-content {
   min-height: 70%;
+  height: 1px;
 }
+
+.row-main-content > section {
+  min-height: 100%;
+  height: 1px;
+}
+
+.row-main-content > aside {
+  min-height: 100%;
+  height: 1px;
+}
+
+.row-chat {
+  min-height: 97%;
+  height: 1px;
+}
+
+.row-chat > ul {
+  min-height: 80%;
+}
+
 .row-footer {
     background-color: #EC6269;
     color: #fff;
