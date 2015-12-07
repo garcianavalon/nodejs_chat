@@ -14,6 +14,7 @@ a {
 .row-main-content {
   min-height: 70%;
   height: 1px;
+  padding-left: 3em;
 }
 
 .row-main-content > section {
@@ -24,6 +25,7 @@ a {
 .row-main-content > aside {
   min-height: 100%;
   height: 1px;
+  border-left: 1px solid #aaa;
 }
 
 .row-chat {
@@ -40,3 +42,27 @@ a {
     color: #fff;
 }
 
+.chat-input {
+  border-top: 1px solid #aaa;
+  width: 135%;
+}
+
+.chat-input-avatar > img {
+  width: 5em;
+  padding: 0em;
+  display: block;
+  border-radius: 15px;
+}
+
+.chat-input-avatar {
+  display: inline-block;
+  width: 15%;
+}
+
+.chat-input-form {
+  display: inline-block;
+}
+
+.chat-input-form .input {
+  border: 2px solid #eee;
+}
