@@ -1,114 +1,116 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-	<div class="row row-main-content">
-	  <section class="column ten reset">
-	    <div class="row row-chat">
-	      <ul id="messages">
-	        <li>
-	          <div class="row row-message">
-	            <div class="chat-message-avatar column one">
-	              <img src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-	            </div>
-	            <div class="chat-message-text column eleven last">
-	              <p>Hola</p>
-	            </div>
-	          </div>
-	        </li>
-	        <li>
-	          <div class="row row-message">
-	            <div class="chat-message-avatar column one">
-	              <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-	            </div>
-	            <div class="chat-message-text column eleven last">
-	              <p>Hola, mira mi mensaje de ejemplo</p>
-	            </div>
-	          </div>
-	        </li>
-	        <li>
-	          <div class="row row-message">
-	            <div class="chat-message-avatar column one">
-	              <img src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-	            </div>
-	            <div class="chat-message-text column eleven last">
-	              <p>Bua, es brutal</p>
-	            </div>
-	          </div>
-	        </li>
-	        <li>
-	          <div class="row row-message">
-	            <div class="chat-message-avatar column one">
-	              <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-	            </div>
-	            <div class="chat-message-text column eleven last">
-	              <p>Lo se nena, lo se ;)</p>
-	            </div>
-	          </div>
-	        </li>
-	      </ul>
-	      <div class="chat-input row">
-	        <div class="chat-input-avatar column one">
-	          <img src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-	        </div>
-	        <div class="chat-input-form column eleven last">
-	          <form action="" class="">
-	            <input id="m" autocomplete="off" class="plain input buffer" placeholder="Escribe tu mensaje"/>
-	            <button class="plain input button">Enviar</button>
-	          </form>
-	        </div>
-	      </div>
-	    </div>
+<div class="container-fluid main-content">
+  <img class="right-texture" src="/static/images/textures/triangles-top.png">
+	<div class="row">
+    <aside class="col-xs-3">
+      <header class="content-header">
+        <h3 class="">Historial de conversaciones</h3>
+      </header>
+      <section class="row">
+        <ul id="conversations" class="conversation-list">
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Manolo `Catacracker` Ruiz </p>
+              </div>
+          </li>
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Joaquin `Joaquinator` Antero</p>
+              </div>
+          </li>
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Luis `Brocha de acero` Garcia-Torres</p>
+              </div>
+          </li>
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Cris `La Cifu` Futer</p>
+              </div>
+          </li>
+        </ul>
+      </section>
+    </aside>
+	  <section class="col-xs-8">
+	    <div class="row chat-messages">
+        <div class="col-xs-12">
+          <header class="content-header">
+            <h3 class="">Estás chateando con Pinturas Pepe</h3>
+          </header>
+  	      <ul id="messages-list">
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Hola</p>
+                </div>
+              </div>
+  	        </li>
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Hola, mira mi mensaje de ejemplo</p>
+                </div>
+              </div>
+  	        </li>
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Bua, es brutal</p>
+                </div>
+              </div>
+  	        </li>
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Lo se nena, lo se ;)</p>
+                </div>
+              </div>
+  	        </li>
+  	      </ul>
+        </div>
+      </div>
+      <div class="row chat-input">
+        <div class="col-xs-12">
+          <div class="chat-input-avatar col-xs-2">
+            <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
+          </div>
+          <div class="chat-input-form col-xs-10">
+            <form action="" class="">
+              <input id="m" autocomplete="off" class="plain input buffer" placeholder="Escribe tu mensaje"/>
+              <button class="plain input button">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
 	  </section>
-	  <aside class="column two reset last">
-	    <header class="row row-aside-header">
-	      <div class="row-content">
-	        <h3 class="squeeze-top">Historial de conversaciones</h3>
-	      </div>
-	    </header>
-	    <section class="row">
-	      <ul id="conversations" class="conversation-list">
-	        <li>
-	        	<div class="row row-conversation">
-	            <div class="chat-conversation-avatar column two">
-	              <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-	            </div>
-	            <div class="chat-conversation-user column ten last">
-	              <p>Manolo `Catacracker` Ruiz </p>
-	            </div>
-	          </div>
-	        </li>
-	        <li>
-	        	<div class="row row-conversation">
-	            <div class="chat-conversation-avatar column two">
-	              <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-	            </div>
-	            <div class="chat-conversation-user column ten last">
-	              <p>Joaquin `Joaquinator` Antero</p>
-	            </div>
-	          </div>
-	        </li>
-	        <li>
-	        	<div class="row row-conversation">
-	            <div class="chat-conversation-avatar column two">
-	              <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-	            </div>
-	            <div class="chat-conversation-user column ten last">
-	              <p>Luis `Brocha de acero` Garcia-Torres</p>
-	            </div>
-	          </div>
-	        </li>
-	        <li>
-	        	<div class="row row-conversation">
-	            <div class="chat-conversation-avatar column two">
-	              <img src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-	            </div>
-	            <div class="chat-conversation-user column ten last">
-	              <p>Cris `La Cifu` Futer</p>
-	            </div>
-	          </div>
-	        </li>
-	      </ul>
-	    </section>
-	  </aside>
+	  
 	</div>
+  <img class="left-texture" src="/static/images/textures/triangles-bottom.png">
+</div>
 {% endblock %}
