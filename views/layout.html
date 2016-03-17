@@ -3,11 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}nodejs_chat{% endblock %}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
     {% block extra_head %}
     {% endblock %}
   </head>
   <body>
-      {% block content %}{% endblock %}
+    <header class="container-fluid page-header">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Chat</h1>
+        </div>
+      </div>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer class="row row-footer">
+      <div class="row-content buffer">
+        <p><a href="#" target="_blank">Footer</a></p>
+      </div>
+    </footer>
+    <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    {% block extra_js %}
+    {% endblock %}
   </body>
 </html>

@@ -1,51 +1,150 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <h1>Chat</h1>
-  <h2 id='nick_tag'></h2>
-  <form action="" id='login'>
-    <label for='nickname'>Choose a nickname</label>
-    <input id="nickname" autocomplete="off" /><button>Send</button>
-  </form>
-  <div id='chat' class='chat'>
-    <h3>Connected users: </h3><ul id='users'></ul>
-    <form action="" id='chat_form'>
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-    <ul id='messages'></ul>
-  </div>
-  <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-  <script>
-    $('#login').submit(function(){
-      //init socket with username
-      var nickname = $('#nickname').val();
-      var socket = io('', {query: 'nickname=' + nickname});
-      socket.emit('user connected', nickname);
-      $('#chat_form').submit(function(){
-        var msg = $('#m').val();
-        $('#messages').append($('<li>').text(msg));
-        socket.emit('chat message', msg);
-        // clear message field
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-      // update connected users
-      socket.on('user connected', function(nickname){
-        $('#users').append($('<li>').text(nickname));
-      });
+<div class="container-fluid main-content">
+  <img class="right-texture" src="/static/images/textures/triangles-top.png">
+	<div class="row">
+    <aside class="col-xs-3">
+      <header class="content-header">
+        <h3 class="">Conversaciones anteriores</h3>
+      </header>
+      <section class="row">
+        <ul id="conversations" class="conversation-list">
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Manolo `Catacracker` Ruiz </p>
+              </div>
+          </li>
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Joaquin `Joaquinator` Antero</p>
+              </div>
+          </li>
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Luis `Brocha de acero` Garcia-Torres</p>
+              </div>
+          </li>
+          <li>
+              <div class="chat-conversation-avatar column two">
+                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              </div>
+              <div class="chat-conversation-user column ten last">
+                <p>Cris `La Cifu` Futer</p>
+              </div>
+          </li>
+        </ul>
+      </section>
+    </aside>
+	  <section class="col-xs-8">
+	    <div class="row chat-messages">
+        <div class="col-xs-12">
+          <header class="content-header">
+            <h3 class="">Estás chateando con <b>Pinturas Pepe</b></h3>
+          </header>
+  	      <ul id="messages-list">
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Hola</p>
+                </div>
+              </div>
+  	        </li>
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Hola, mira mi mensaje de ejemplo</p>
+                </div>
+              </div>
+  	        </li>
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Bua, es brutal</p>
+                </div>
+              </div>
+  	        </li>
+  	        <li>
+              <div class="row">
+                <div class="chat-message-avatar col-xs-1">
+                  <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+                </div>
+                <div class="chat-message-text col-xs-10">
+                  <p>Lo se nena, lo se ;)</p>
+                </div>
+              </div>
+  	        </li>
+  	      </ul>
+        </div>
+      </div>
+      <div class="row chat-input">
+        <div class="col-xs-12">
+          <div class="chat-input-avatar col-xs-2">
+            <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
+          </div>
+          <div class="chat-input-form col-xs-10">
+            <form action="" class="" id='chat_form'>
+              <input id="m" autocomplete="off" class="plain input buffer" placeholder="Escribe tu mensaje"/>
+              <button class="plain input button">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+	  </section>
+	  
+	</div>
+  <img class="left-texture" src="/static/images/textures/triangles-bottom.png">
+</div>
+{% endblock %}
 
-      // show nickname
-      $('#nick_tag').text('Welcome ' + nickname);
-      $('#login').hide();
-      // show chat
-      $('#chat').show();
-      // prevent form from actually submitting
+{% block extra_js %}
+<script>
+  $(function(){
+    //init socket with username
+    var nickname = 'TODO';
+    var socket = io('', {query: 'nickname=' + nickname});
+    socket.emit('user connected', nickname);
+    $('#chat_form').submit(function(){
+      var msg = $('#m').val();
+      $('#messages-list').append($('<li>').text(msg));
+      socket.emit('chat message', msg);
+      // clear message field
+      $('#m').val('');
       return false;
     });
+    socket.on('chat message', function(msg){
+      $('#messages-list').append($('<li>').text(msg));
+    });
+    // update connected users
+    socket.on('user connected', function(nickname){
+      $('#users').append($('<li>').text(nickname));
+    });
 
-  </script>
+    // show nickname
+    $('#nick_tag').text('Welcome ' + nickname);
+    $('#login').hide();
+    // show chat
+    $('#chat').show();
+    // prevent form from actually submitting
+    return false;
+  });
+</script>
 {% endblock %}

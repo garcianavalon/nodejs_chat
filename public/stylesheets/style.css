@@ -1,12 +1,73 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*
+// Font weights
+$light: 100;
+$regular: 400;
+$bold: 600;
+
+// Base Font
+$base-font-family: 'Source Sans Pro', sans-serif;
+*/
+
+html, body {
+  font: 14px 'Source Sans Pro', sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #fff;
 }
 
-#chat {
-  display: none;
+ul {
+  list-style: none;
+}
+
+.page-header {
+  background-color: #EC6269;
+  color: #fff;
+  margin: 0px;
+  border: none;
+}
+
+.main-content {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.row-main-content > aside {
+  border-left: 1px solid #aaa;
+}
+
+.row-footer {
+  background-color: #272727;
+  color: #fff;
+}
+
+.chat-input {
+  border-top: 1px solid #aaa;
+}
+
+.chat-message-text {
+  padding-top: 10px;
+}
+
+.content-header {
+  border-bottom: 1px solid #aaa;
+}
+
+.chat-conversation-user p {
+  font-size: 13px;
+}
+
+.right-texture {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  width: 14%;
+}
+
+.left-texture {
+  width: 20%;
+}
+
+#messages-list{
+  min-height: 58vh;
 }
