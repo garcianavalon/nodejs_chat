@@ -94,16 +94,11 @@
     socket.on('chat message', function(msg){
       render_message('/images/users/no_soul_red.jpg', msg);
     });
-    // update connected users
+    /*// update connected users
     socket.on('user connected', function(nickname){
       $('#users').append($('<li>').text(nickname));
     });
-
-    // show nickname
-    $('#nick_tag').text('Welcome ' + nickname);
-    $('#login').hide();
-    // show chat
-    $('#chat').show();
+    */
     // prevent form from actually submitting
     return false;
   });

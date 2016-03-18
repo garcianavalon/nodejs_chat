@@ -28,9 +28,9 @@ var server = http.createServer(app);
 var connected_users = {}
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
-  var nickname = socket.handshake.query.nickname;
-  connected_users[nickname] = socket.id;  
-  socket.broadcast.emit('user connected', nickname);
+  //var nickname = socket.handshake.query.nickname;
+  //connected_users[nickname] = socket.id;  
+  //socket.broadcast.emit('user connected', nickname);
   socket.on('chat message', function(msg){
     socket.broadcast.emit('chat message', msg);
   });
