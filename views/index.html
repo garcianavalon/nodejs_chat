@@ -36,16 +36,16 @@
         </div>
       </div>
       <div class="row chat-input">
-        <div class="col-xs-12">
-          <div class="chat-input-avatar col-xs-2">
-            <img class="img-rounded" width="50" src="http://fonixweddingplanner.com/uploads/testimonial/default.png">
-          </div>
-          <div class="chat-input-form col-xs-10">
-            <form action="" class="" id='chat_form'>
-              <input id="m" autocomplete="off" class="" placeholder="Escribe tu mensaje"/>
-              <button class="sdas">Enviar</button>
-            </form>
-          </div>
+        <div class="chat-input-avatar col-xs-1 col-xs-offset-1">
+          <img class="img-rounded" width="34" src="/images/users/no_soul_grey.jpg">
+        </div>
+        <div class="chat-input-form col-xs-10 ">
+          <form action="" class="form-inline" id='chat_form'>
+            <div class="form-group chat-input-group">
+              <input id="m" autocomplete="off" class="form-control" placeholder="Escribe tu mensaje"/>
+            </div>
+            <button type="submit" class="btn btn-default chat-send">Enviar</button>
+          </form>
         </div>
       </div>
 	  </section>	  
@@ -58,9 +58,9 @@
 <script id="message_template" type="x-tmpl-mustache">
 {% raw %}
   <li>
-    <div class="row">
+    <div class="row chat-message">
       <div class="chat-message-avatar col-xs-1">
-        <img class="img-rounded" width="50" src="{{ avatar_url }}">
+        <img class="img-rounded" width="34" src="{{ avatar_url }}">
       </div>
       <div class="chat-message-text col-xs-10">
         <p>{{ message }}</p>
@@ -85,14 +85,14 @@
     socket.emit('user connected', nickname);
     $('#chat_form').submit(function(){
       var msg = $('#m').val();
-      render_message('http://fonixweddingplanner.com/uploads/testimonial/default.png', msg);
+      render_message('/images/users/no_soul_grey.jpg', msg);
       socket.emit('chat message', msg);
       // clear message field
       $('#m').val('');
       return false;
     });
     socket.on('chat message', function(msg){
-      render_message('https://cdn3.iconfinder.com/data/icons/character/512/8-512.png', msg);
+      render_message('/images/users/no_soul_red.jpg', msg);
     });
     // update connected users
     socket.on('user connected', function(nickname){

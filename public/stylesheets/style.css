@@ -60,10 +60,30 @@ ul {
 
 .chat-input {
   border-top: 1px solid #aaa;
+  padding-top: 20px;
+}
+
+#m {
+  width: 100%;
+  background-color: #c4c4c4;
+}
+.chat-input-group {
+  width: 75%;
+}
+.chat-send {
+  width: 20%;
+}
+
+.chat-message {
+  margin-top: 20px;
 }
 
 .chat-message-text {
   padding-top: 10px;
+  background-color: #c4c4c4;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
 }
 
 .content-header {
@@ -75,12 +95,13 @@ ul {
 }
 
 #messages-list{
-  min-height: 58vh;
+  height: 58vh;
+  overflow: scroll;
 }
 
 .left-section {
   background-color: #9c9c9c;
-  min-height: 80vh;
+  min-height: 90vh;
 }
 
 .page-footer {
@@ -88,7 +109,7 @@ ul {
   padding-top: 30px;
 
   position: absolute;
-  bottom: -227px;
+  bottom: -247px;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 300px;
