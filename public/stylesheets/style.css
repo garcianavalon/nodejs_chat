@@ -6,6 +6,28 @@ $bold: 600;
 
 // Base Font
 $base-font-family: 'Source Sans Pro', sans-serif;
+
+// greys
+$dark-black: #272727;
+$light-black: #4e4e4e;
+$dark-grey: #757575;
+$main-grey: #9c9c9c;
+$light-grey: #c4c4c4;
+$white: #FFFFFF;
+
+// reds
+$dark-dark-red: #763135;
+$dark-red: #b0494f;
+$main-red: #EC6269;
+$light-red: #ef8187;
+$light-light-red: #f7c0c3;
+$super-light-red: #fbdfe1;
+
+// blues
+$dark-blue: #1d465c;
+$blue: #3a8bb8;
+$light-blue: #89b9d4;
+
 */
 
 html, body {
@@ -36,11 +58,6 @@ ul {
   border-left: 1px solid #aaa;
 }
 
-.row-footer {
-  background-color: #272727;
-  color: #fff;
-}
-
 .chat-input {
   border-top: 1px solid #aaa;
 }
@@ -57,17 +74,28 @@ ul {
   font-size: 13px;
 }
 
-.right-texture {
-  position: absolute;
-  right: 0;
-  z-index: 1000;
-  width: 14%;
-}
-
-.left-texture {
-  width: 20%;
-}
-
 #messages-list{
   min-height: 58vh;
 }
+
+.left-section {
+  background-color: #9c9c9c;
+  min-height: 80vh;
+}
+
+.page-footer {
+  background-color: #272727;
+  padding-top: 30px;
+
+  position: absolute;
+  bottom: -227px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 300px;
+}
+
+.copyright {
+  color: #757575;
+  margin-top: 20px;
+}
+
