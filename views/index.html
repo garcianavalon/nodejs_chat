@@ -10,38 +10,19 @@
       </header>
       <section class="row">
         <ul id="conversations" class="conversation-list">
+        {% if !previous_profs.length %}
+          <p>No conversations.</p>
+        {% endif %}
+        {% for prof in previous_profs %}
           <li>
-              <div class="chat-conversation-avatar column two">
-                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
+              <div class="chat-conversation-avatar">
+                <img class="img-rounded" width="50" src="{{ prof.avatar }}">
               </div>
-              <div class="chat-conversation-user column ten last">
-                <p>Manolo `Catacracker` Ruiz </p>
+              <div class="chat-conversation-user">
+                <p>{{ prof.name }}</p>
               </div>
           </li>
-          <li>
-              <div class="chat-conversation-avatar column two">
-                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-              </div>
-              <div class="chat-conversation-user column ten last">
-                <p>Joaquin `Joaquinator` Antero</p>
-              </div>
-          </li>
-          <li>
-              <div class="chat-conversation-avatar column two">
-                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-              </div>
-              <div class="chat-conversation-user column ten last">
-                <p>Luis `Brocha de acero` Garcia-Torres</p>
-              </div>
-          </li>
-          <li>
-              <div class="chat-conversation-avatar column two">
-                <img class="img-rounded" width="50" src="https://cdn3.iconfinder.com/data/icons/character/512/8-512.png">
-              </div>
-              <div class="chat-conversation-user column ten last">
-                <p>Cris `La Cifu` Futer</p>
-              </div>
-          </li>
+        {% endfor %}
         </ul>
       </section>
     </aside>
