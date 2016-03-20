@@ -2,8 +2,14 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
+var cookieSession = require('cookie-session')
+var debug = require('debug')('nodejs_chat:auth');
 
+// FIXME(garcianavalon) THIS SHOULD GO IN APP
 // passport middleware
+router.use(cookieSession({
+  secret: 'TODO'
+}));
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -28,6 +34,7 @@ passport.use('provider', new OAuth2Strategy({
   function(accessToken, refreshToken, profile, done) {
   	// NOTE(garcianavalon) don't store user info => no 'find-or-create'
   	// Simply populate a user object with the provided info
+  	debug('Verify function called')
   	var user = {
   		'name': 'TODO',
   		'id': 'TODO'
@@ -49,12 +56,19 @@ router.get('/provider/callback',
   passport.authenticate('provider', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    debug('Auth ok, redirect to chat')
     res.redirect('/');
   });
 
-/* GET login form. */
+/* GET login page. */
 router.get('/login', function(req, res, next) {
   res.render('login');
+});
+
+/* GET log user out. */
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 

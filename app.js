@@ -5,10 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
+var debug = require('debug')('nodejs_chat:app');
 
-var routes = require('./routes/index');
-//var users = require('./routes/users');
-var login = require('./routes/login');
+var chat = require('./routes/chat');
+var auth = require('./routes/auth');
 
 var swig = require('swig');
 
@@ -27,9 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', chat);
 //app.use('/users', users);
-app.use('/auth', login)
+app.use('/auth', auth)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
