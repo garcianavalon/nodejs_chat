@@ -1,13 +1,17 @@
-<form action="/login" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
+{% extends 'layout.html' %}
+
+{% block content %}
+<div id="loginModal" class="modal-dialog modal-sm account-form" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title" id="ModalLabel">Please sign in</h4>
     </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
+    <div class="modal-body">
+      <a href="/auth/provider" class="button">Log in with my 'provider' account</a>
     </div>
-    <div>
-        <input type="submit" value="Log In"/>
+    <div class="modal-footer">
+      <p>You don't have an account? <a href="http://localhost:7070/signup" class="">Register</a></p>
     </div>
-</form>
+  </div>
+</div>
+{% endblock %}
