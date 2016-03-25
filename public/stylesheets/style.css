@@ -75,15 +75,16 @@ ul {
 }
 
 .chat-message {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .chat-message-text {
-  padding-top: 10px;
-  background-color: #c4c4c4;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  margin-top: 0px;
+  padding-left: 0px;
+}
+
+.chat-message-username {
+  padding-left: 0px;
 }
 
 .content-header {
@@ -97,6 +98,8 @@ ul {
 #messages-list{
   height: 58vh;
   overflow: scroll;
+  padding-left: 0px;
+  padding-top: 10px;
 }
 
 .left-section {

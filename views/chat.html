@@ -29,7 +29,7 @@
 	    <div class="row chat-messages">
         <div class="col-xs-12">
           <header class="content-header">
-            <h3 class="">Estás chateando con <b>{{ to.name }}</b></h3>
+            <h3 class="">Estás chateando con <b>{{ prof.name }}</b></h3>
           </header>
   	      <ul id="messages-list">
   	      </ul>
@@ -60,7 +60,10 @@
   <li>
     <div class="row chat-message">
       <div class="chat-message-avatar col-xs-1">
-        <img class="img-rounded" width="34" src="{{ avatar_url }}">
+        <img class="img-rounded" width="40" src="{{ avatar_url }}">
+      </div>
+      <div class="chat-message-username col-xs-10">
+        <span><b>{{ from }}</b></span>
       </div>
       <div class="chat-message-text col-xs-10">
         <p>{{ message }}</p>
@@ -70,12 +73,12 @@
 {% endraw %}
 </script>
 <script>
-  function render_message(avatar_url, message) {
+  function render_message(from, avatar_url, message) {
     var template = $('#message_template').html();
     Mustache.parse(template);   // optional, speeds up future uses
     var rendered = Mustache.render(
       template,
-      {avatar_url: avatar_url, message: message});
+      {avatar_url: avatar_url, message: message, from: from});
     $('#messages-list').append(rendered);
   }
   $(function(){
@@ -85,14 +88,14 @@
     socket.emit('user connected', nickname);
     $('#chat_form').submit(function(){
       var msg = $('#m').val();
-      render_message('/images/users/no_soul_grey.jpg', msg);
+      render_message(nickname, '/images/users/no_soul_grey.jpg', msg);
       socket.emit('chat message', msg);
       // clear message field
       $('#m').val('');
       return false;
     });
     socket.on('chat message', function(msg){
-      render_message('/images/users/no_soul_red.jpg', msg);
+      render_message('prof', '/images/users/no_soul_red.jpg', msg);
     });
     /*// update connected users
     socket.on('user connected', function(nickname){
