@@ -5,7 +5,7 @@ var debug = require('debug')('nodejs_chat:chat');
 /* GET chat page. */
 router.get('/', function(req, res, next) {
   debug('Session objetc: ', req.session)
-  if (req.session == null || req.session.user == null){
+  if (req.session == null || req.session.passport.user == null){
     debug('Redirecting to login');
     res.redirect('/auth/login');
   } else{
