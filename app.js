@@ -31,6 +31,11 @@ app.use(cookieSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+// add session object as context in templates
+app.use(function(req, res, next){
+    res.locals.session = req.session;
+    next();
+});
 
 // routes
 var chat = require('./routes/chat');

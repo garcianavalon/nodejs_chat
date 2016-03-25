@@ -28,7 +28,7 @@ module.exports = function (passport) {
     	// Simply populate a user object with the provided info
     	debug('Verify function called')
     	var user = {
-    		'name': 'TODO',
+    		'name': 'You(TODO)',
     		'id': 'TODO'
     	}
       done(null, user);
