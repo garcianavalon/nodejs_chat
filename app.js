@@ -39,11 +39,16 @@ app.use(function(req, res, next){
       req.session.conversations = [];
     };
     // add user
-    var new_user = req.query.chat_with
+    var new_user = req.query.chat_with || req.cookies.chat_with;
     if (new_user != null && !(req.session.conversations.includes(new_user))) {
       debug('Adding new user to conversations: ', new_user);
       req.session.conversations.push(new_user);
+      req.cookies.chat_with = null;
     };
+  } else {
+    // store chat_with in temporary cookie until login
+    debug('Storing in temp cookie chat_with ', req.query.chat_with);
+    req.cookies.chat_with = req.query.chat_with;
   }
   next();
 });

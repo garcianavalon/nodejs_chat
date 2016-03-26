@@ -58,7 +58,7 @@ module.exports = function (passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       debug('Auth ok, redirect to chat')
-      var chat_url = '/?' + qs.stringify(req.query);
+      var chat_url = '/';
       res.redirect(chat_url);
     });
 

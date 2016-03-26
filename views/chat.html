@@ -76,14 +76,14 @@
 {% endraw %}
 </script>
 <script>
-  function getUrlVars() {
+  /*function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
     function(m,key,value) {
       vars[key] = value;
     });
     return vars;
-  }
+  }*/
   function render_message(from, avatar_url, message) {
     var template = $('#message_template').html();
     Mustache.parse(template);   // optional, speeds up future uses
@@ -100,7 +100,8 @@
   }
   $(function(){
     // init conversations
-    var current_conversation = getUrlVars()["chat_with"];
+    //var current_conversation = getUrlVars()["chat_with"];
+    var current_conversation = '{{ session.conversations['0'] }}';
     switch_conversation(current_conversation);
 
     //init socket with username
