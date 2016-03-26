@@ -31,11 +31,29 @@ app.use(cookieSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+// add chat_with to session cookie
+app.use(function(req, res, next){
+  if (req.session != null){
+    // initialize conversations array if empty
+    if (req.session.conversations == null) {
+      req.session.conversations = [];
+    };
+    // add user
+    var new_user = req.query.chat_with
+    if (new_user != null && !(req.session.conversations.includes(new_user))) {
+      debug('Adding new user to conversations: ', new_user);
+      req.session.conversations.push(new_user);
+    };
+  }
+  next();
+});
 // add session object as context in templates
 app.use(function(req, res, next){
     res.locals.session = req.session;
     next();
 });
+
+
 
 // routes
 var chat = require('./routes/chat');

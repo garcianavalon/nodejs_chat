@@ -103,8 +103,14 @@ ul {
 }
 
 .left-section {
-  background-color: #9c9c9c;
+  background-color: #c4c4c4;
   min-height: 90vh;
+}
+.conversation-list {
+  padding-left: 10px;
+}
+.chat-conversation {
+  margin-top: 5px;
 }
 
 .page-footer {

@@ -5,20 +5,23 @@
 	<div class="row">
     <aside class="col-xs-3 left-section">
       <header class="content-header">
-        <h3>Conversaciones anteriores</h3>
+        <h3>Conversaciones</h3>
       </header>
-      <section class="row">
+      <section>
         <ul id="conversations" class="conversation-list">
-        {% if !previous_profs.length %}
+        {% if !session.conversations.length %}
           <p>No conversations.</p>
         {% endif %}
-        {% for prof in previous_profs %}
-          <li>
-              <div class="chat-conversation-avatar">
-                <img class="img-rounded" width="50" src="{{ prof.avatar }}">
+        {% for username in session.conversations %}
+          <li class="row chat-conversation">
+              <div class="chat-conversation-avatar col-xs-2">
+                <img class="img-rounded" width="40" src="/images/users/no_soul_red.jpg">
               </div>
-              <div class="chat-conversation-user">
-                <p>{{ prof.name }}</p>
+              <div class="chat-conversation-user col-xs-6">
+                <p>{{ username }}</p>
+              </div>
+              <div class="chat-conversation-user col-xs-2">
+                <button class="btn btn-default conversation-switch" data-username="{{ username }}">¡A chatear!</button>
               </div>
           </li>
         {% endfor %}
@@ -29,7 +32,7 @@
 	    <div class="row chat-messages">
         <div class="col-xs-12">
           <header class="content-header">
-            <h3 class="">Estás chateando con <b>{{ prof.name }}</b></h3>
+            <h3 class="">Estás chateando con <b id="current-conversation-name"></b></h3>
           </header>
   	      <ul id="messages-list">
   	      </ul>
@@ -73,6 +76,14 @@
 {% endraw %}
 </script>
 <script>
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
   function render_message(from, avatar_url, message) {
     var template = $('#message_template').html();
     Mustache.parse(template);   // optional, speeds up future uses
@@ -81,29 +92,59 @@
       {avatar_url: avatar_url, message: message, from: from});
     $('#messages-list').append(rendered);
   }
+  function switch_conversation(username) {
+    // update name
+    $('#current-conversation-name').text(username);
+    // clear chat messages
+    $('#messages-list').html('');
+  }
   $(function(){
+    // init conversations
+    var current_conversation = getUrlVars()["chat_with"];
+    switch_conversation(current_conversation);
+
     //init socket with username
-    var nickname = '{{ session.passport.user.username }}';
-    var socket = io('', {query: 'nickname=' + nickname});
-    socket.emit('user connected', nickname);
+    var username = '{{ session.passport.user.username }}';
+    var socket = io('', {
+      query: 'username=' + username
+    });
+
+    //socket.emit('user connected', username);
+    // message sending
     $('#chat_form').submit(function(){
       var msg = $('#m').val();
-      render_message(nickname, '/images/users/no_soul_grey.jpg', msg);
-      socket.emit('chat message', msg);
+      if (msg == undefined) {
+        //empty chat message, don't send
+        return false;
+      }
+      render_message(username, '/images/users/no_soul_grey.jpg', msg);
+      socket.emit('chat message', {
+        to: current_conversation,
+        from: username,
+        message: msg
+      });
       // clear message field
       $('#m').val('');
+      // prevent form from actually submitting
       return false;
     });
-    socket.on('chat message', function(msg){
-      render_message('prof', '/images/users/no_soul_red.jpg', msg);
+
+    // message received
+    socket.on('chat message', function(data){
+      render_message(data.from, '/images/users/no_soul_red.jpg', data.message);
     });
+
     /*// update connected users
-    socket.on('user connected', function(nickname){
-      $('#users').append($('<li>').text(nickname));
+    socket.on('user connected', function(username){
+      $('#users').append($('<li>').text(username));
     });
     */
-    // prevent form from actually submitting
-    return false;
+    
+    // conversation switching
+    $('.conversation-switch').click(function(event){
+      current_conversation = $(this).data('username');
+      switch_conversation(current_conversation);
+    });
   });
 </script>
 {% endblock %}

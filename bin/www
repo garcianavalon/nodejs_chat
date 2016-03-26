@@ -25,14 +25,20 @@ var server = http.createServer(app);
  * Socket.IO listening
  */
 
-var connected_users = {}
+app.locals.connected_users = {}
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
-  //var nickname = socket.handshake.query.nickname;
-  //connected_users[nickname] = socket.id;  
-  //socket.broadcast.emit('user connected', nickname);
-  socket.on('chat message', function(msg){
-    socket.broadcast.emit('chat message', msg);
+  var username = socket.handshake.query.username;
+  app.locals.connected_users[username] = socket.id;  
+  //socket.broadcast.emit('user connected', username);
+  socket.on('chat message', function(data){
+    var to_socket = app.locals.connected_users[data.to]
+    if (io.sockets.connected[to_socket]) {
+      io.sockets.connected[to_socket].emit('chat message', {
+        from: data.from,
+        message: data.message
+      });
+    }
   });
 });
 
