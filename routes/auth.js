@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
+var request = require('request');
 var debug = require('debug')('nodejs_chat:auth');
 
 module.exports = function (passport) {
@@ -26,12 +27,20 @@ module.exports = function (passport) {
     function(accessToken, refreshToken, profile, done) {
     	// NOTE(garcianavalon) don't store user info => no 'find-or-create'
     	// Simply populate a user object with the provided info
-    	debug('Verify function called')
-    	var user = {
-    		'name': 'You(TODO)',
-    		'id': 'TODO'
-    	}
-      done(null, user);
+    	debug('Verify function called');
+      request('http://10.0.2.2:7070/api/validate/', {
+        'auth': {
+          'bearer': accessToken
+        }
+      }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          var user = JSON.parse(body).user;
+          done(null, user);
+        } else {
+          debug(error)
+          done(error);
+        } 
+      });
     }
   ));
 
@@ -45,7 +54,7 @@ module.exports = function (passport) {
   // token.  If authorization was granted, the user will be logged in.
   // Otherwise, authentication has failed.
   router.get('/provider/callback',
-    passport.authenticate('provider', { failureRedirect: '/login' }),
+    passport.authenticate('provider', { failureRedirect: '/auth/login' }),
     function(req, res) {
       // Successful authentication, redirect home.
       debug('Auth ok, redirect to chat')

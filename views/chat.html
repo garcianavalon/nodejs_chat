@@ -83,7 +83,7 @@
   }
   $(function(){
     //init socket with username
-    var nickname = '{{ session.passport.user.name }}';
+    var nickname = '{{ session.passport.user.username }}';
     var socket = io('', {query: 'nickname=' + nickname});
     socket.emit('user connected', nickname);
     $('#chat_form').submit(function(){
