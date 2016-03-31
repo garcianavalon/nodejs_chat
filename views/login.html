@@ -1,17 +1,30 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div id="loginModal" class="modal-dialog modal-sm account-form" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title" id="ModalLabel">Please sign in</h4>
-    </div>
-    <div class="modal-body">
-      <a href="/auth/provider" class="button">Log in with my 'provider' account</a>
-    </div>
-    <div class="modal-footer">
-      <p>You don't have an account? <a href="http://localhost:7070/signup" class="">Register</a></p>
+{% endblock %}
+
+{% block extra_body %}
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="ModalLabel">Please sign in</h4>
+      </div>
+      <div class="modal-body">
+        <a href="/auth/provider" class="btn btn-default">Log in with my 'provider' account</a>
+      </div>
+      <div class="modal-footer">
+        <span>You don't have an account? <a href="http://localhost:7070/signup" class="">Register</a></span>
+      </div>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+  $(function(){
+    $('#loginModal').modal('show');
+  });
+</script>
 {% endblock %}

@@ -34,10 +34,6 @@ html, body {
   font: 14px 'Source Sans Pro', sans-serif;
 }
 
-a {
-  color: #fff;
-}
-
 ul {
   list-style: none;
 }
@@ -129,3 +125,14 @@ ul {
   margin-top: 20px;
 }
 
+.modal-content {
+  margin-top: 26vh;
+}
+
+#loginModal .modal-body{
+  text-align: center;
+}
+
+#loginModal .modal-footer{
+  text-align: left;
+}
