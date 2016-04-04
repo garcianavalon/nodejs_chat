@@ -110,7 +110,6 @@
       query: 'username=' + username
     });
 
-    //socket.emit('user connected', username);
     // message sending
     $('#chat_form').submit(function(){
       var msg = $('#m').val();
@@ -134,17 +133,16 @@
     socket.on('chat message', function(data){
       render_message(data.from, '/images/users/no_soul_red.jpg', data.message);
     });
-
-    /*// update connected users
-    socket.on('user connected', function(username){
-      $('#users').append($('<li>').text(username));
-    });
-    */
     
     // conversation switching
     $('.conversation-switch').click(function(event){
       current_conversation = $(this).data('username');
       switch_conversation(current_conversation);
+    });
+
+    // detect user offline
+    $( window ).unload(function() {
+      socket.emit('user disconnected', username);
     });
   });
 </script>

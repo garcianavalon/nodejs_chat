@@ -30,7 +30,7 @@ var io = require('socket.io')(server);
 io.on('connection', function(socket){
   var username = socket.handshake.query.username;
   app.locals.connected_users[username] = socket.id;  
-  //socket.broadcast.emit('user connected', username);
+  
   socket.on('chat message', function(data){
     var to_socket = app.locals.connected_users[data.to]
     if (io.sockets.connected[to_socket]) {
@@ -39,6 +39,11 @@ io.on('connection', function(socket){
         message: data.message
       });
     }
+  });
+
+  socket.on('user disconnected', function(username){
+    debug('User disconnected: ', username);
+    delete app.locals.connected_users[username];
   });
 });
 
