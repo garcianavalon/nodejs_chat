@@ -9,22 +9,6 @@
       </header>
       <section>
         <ul id="conversations" class="conversation-list">
-        {% if !session.conversations.length %}
-          <p>No conversations.</p>
-        {% endif %}
-        {% for username in session.conversations %}
-          <li class="row chat-conversation">
-              <div class="chat-conversation-avatar col-xs-2">
-                <img class="img-rounded" width="40" src="/images/users/no_soul_red.jpg">
-              </div>
-              <div class="chat-conversation-user col-xs-6">
-                <p>{{ username }}</p>
-              </div>
-              <div class="chat-conversation-user col-xs-2">
-                <button class="btn btn-default conversation-switch" data-username="{{ username }}">¡A chatear!</button>
-              </div>
-          </li>
-        {% endfor %}
         </ul>
       </section>
     </aside>
@@ -75,6 +59,21 @@
   </li>
 {% endraw %}
 </script>
+<script id="conversation_template" type="x-tmpl-mustache">
+{% raw %}
+  <li class="row chat-conversation">
+    <div class="chat-conversation-avatar col-xs-2">
+      <img class="img-rounded" width="40" src="/images/users/no_soul_red.jpg">
+    </div>
+    <div class="chat-conversation-user col-xs-6">
+      <p>{{ username }}</p>
+    </div>
+    <div class="chat-conversation-user col-xs-2">
+      <button class="btn btn-default conversation-switch" data-username="{{ username }}">¡A chatear!</button>
+    </div>
+  </li>
+{% endraw %}
+</script>
 <script>
   /*function getUrlVars() {
     var vars = {};
@@ -92,6 +91,14 @@
       {avatar_url: avatar_url, message: message, from: from});
     $('#messages-list').append(rendered);
   }
+  function render_conversation(username) {
+    var template = $('#conversation_template').html();
+    Mustache.parse(template);   // optional, speeds up future uses
+    var rendered = Mustache.render(
+      template,
+      {username: username});
+    $('#conversations').append(rendered);
+  }
   function switch_conversation(username) {
     // update name
     $('#current-conversation-name').text(username);
@@ -101,8 +108,12 @@
   $(function(){
     // init conversations
     //var current_conversation = getUrlVars()["chat_with"];
+    var conversations = {% autoescape false %}{{ session.conversations|json }}{% endautoescape %};
     var current_conversation = '{{ session.conversations['0'] }}';
     switch_conversation(current_conversation);
+    for (var i = conversations.length - 1; i >= 0; i--) {
+      render_conversation(conversations[i]);
+    };
 
     //init socket with username
     var username = '{{ session.passport.user.username }}';
@@ -131,6 +142,14 @@
 
     // message received
     socket.on('chat message', function(data){
+      if (data.from != current_conversation) {
+        if (!(conversations.includes(data.from))) {
+          conversations.push(data.from);
+          render_conversation(data.from);
+        };
+        current_conversation = data.from;
+        switch_conversation(current_conversation);
+      };
       render_message(data.from, '/images/users/no_soul_red.jpg', data.message);
     });
     
